@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  node:
+    image: node:12-alpine
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app:cached
+      - ./node_modules:/usr/src/app/node_modules
+    ports:
+      - 8080:8080
+    command:
+      sh -c "npm install &&
+      npx webpack &&
+      cd ./dist &&
+      node main.js"

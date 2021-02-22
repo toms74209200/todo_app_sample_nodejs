@@ -13,7 +13,10 @@ class DaoManager {
     }
 
     selectUser(id) {
-        return this._users[id];
+        if (id in this._users) {
+            return this._users[id];
+        }
+        throw new Error("User id is not found");
     }
 
     getUsers() {
@@ -23,7 +26,9 @@ class DaoManager {
     deleteUser(id) {
         if (id in this._users) {
             delete this._users[id];
+            return;
         }
+        throw new Error("User id is not found");
     }
 
     deleteUsers() {

@@ -1,0 +1,12 @@
+name: ci-test
+on: [push]
+jobs:
+  test:
+      runs-on: ubuntu-18.04
+      steps:
+        - uses: actions/checkout@v2
+        - name: test
+          shell: bash
+          run: |
+            docker-compose run -T node npm install
+            docker-compose run -T node npm test
